@@ -10,9 +10,9 @@ async def main():
     load_dotenv()
     bot = telegram.Bot(token=os.environ['TELEGRAM_BOT_TOKEN'],)
     async with bot:
-        await bot.send_message(
-                                text='Hello World!',
-                                chat_id=os.environ['TELEGRAM_CHAT_ID']
+        await bot.send_photo(
+                                chat_id=os.environ['TELEGRAM_CHAT_ID'],
+                                photo=open('./images/swan_rheman.jpg', 'rb')
                             )
 
 
