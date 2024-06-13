@@ -74,6 +74,18 @@ Example of running script to fetch 25 images:
 py fetch_nasa_epic_images.py 25
 ```
 
+### post_image_in_tg_channel.py
+Post specific or random image in telegram channel.
+Example of running script for posting random image:
+```
+py post_image_in_tg_channel.py 
+```
+
+Example of running script for posting specific image by name from /images/ local subdirectory of this project:
+```
+py post_image_in_tg_channel.py image.jpg
+```
+
 ### post_all_images_in_tg_channel.py
 Post images in telegram channel with frequency you may choose (in seconds).
 Example of running script with default frequency (4 hours):
