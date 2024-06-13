@@ -6,6 +6,7 @@ This project is about 5 scripts for fetching images from SpaceX, NASA EPIC, NASA
 #### NASA API key
 
 For getting an api key you may need to visit [this](https://api.nasa.gov/)
+
 Example of key (unusable):
 ```
 hvwSPvHWQsRB8P24gD564EBbrpuc2DJLrKSD2E0l
@@ -17,6 +18,7 @@ After getting a key you may need to create a .env file and put this key like thi
 
 #### Telegram Bot
 [How to create a bot and get access token](https://way23.ru/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%BE%D1%82%D0%B0-%D0%B2-telegram.html)
+
 Example of token (unusable):
 ```
 3871579594:BBE2p_C131bghARhYe7-qLsvnA2LqZRQT8V
@@ -37,6 +39,7 @@ pip install -r requirements.txt
 
 ### About and how to use
 All images will be stored by default in subdirectory /images/ of project. 
+
 You can change this in save_images_from_urls.py by changing DIR_PATH.
 
 #### fetch_spacex_images.py
@@ -49,10 +52,12 @@ py fetch_spacex_images.py
 ```
 
 For specific launch you may need to get an id of launch from [API](https://api.spacexdata.com/v5/launches/).
+
 Example of id:
 ```
 5eb87ce5ffd86e000604b339
 ```
+
 Example of running script for id=5eb87ce5ffd86e000604b339:
 ```
 py fetch_spacex_images.py 5eb87ce5ffd86e000604b339
@@ -76,6 +81,7 @@ py fetch_nasa_epic_images.py 25
 
 ### post_image_in_tg_channel.py
 Post specific or random image in telegram channel.
+
 Example of running script for posting random image:
 ```
 py post_image_in_tg_channel.py 
