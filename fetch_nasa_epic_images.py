@@ -22,12 +22,21 @@ def fetch_image_name_with_time(date):
 
 def get_random_indexies_from_array(array, count):
     random_indexies_from_resp = []
-    for i in range(0, int(count)):
+    for i in range(0, count):
         random_index_from_resp = random.randrange(len(array))
         while (random_index_from_resp in random_indexies_from_resp):
             random_index_from_resp = random.randrange(len(array))
         random_indexies_from_resp.append(random_index_from_resp)
     return random_indexies_from_resp
+
+
+def assemble_nasa_epic_url(date, api_key_nasa):
+    image_name_with_time = fetch_image_name_with_time(date)
+    url_base = 'https://api.nasa.gov/EPIC/archive/natural/'
+    date = date.replace('-', '/')
+    url_path_with_date = f'{url_base}{date}/png/{image_name_with_time}.png'
+    params_api_key = {'api_key': api_key_nasa}
+    return {'url': url_path_with_date, 'params': params_api_key}
 
 
 def fetch_nasa_epic(count, api_key_nasa):
@@ -38,19 +47,10 @@ def fetch_nasa_epic(count, api_key_nasa):
     response.raise_for_status()
     response = response.json()
     random_indexies_from_resp = get_random_indexies_from_array(response, count)
-    dates = []
-    for index in random_indexies_from_resp:
-        dates.append(response[index]['date'])
-    urls_with_params = []
-    for date in dates:
-        image_name_with_time = fetch_image_name_with_time(date)
-        url_base = 'https://api.nasa.gov/EPIC/archive/natural/'
-        date = date.replace('-', '/')
-        url_path_with_date = f'{url_base}{date}/png/{image_name_with_time}.png'
-        params_api_key = {'api_key': api_key_nasa}
-        urls_with_params.append({
-            'url': url_path_with_date, 'params': params_api_key
-        })
+    dates = [response[index]['date'] for index in random_indexies_from_resp]
+    urls_with_params = [
+        assemble_nasa_epic_url(date, api_key_nasa) for date in dates
+    ]
     return urls_with_params
 
 

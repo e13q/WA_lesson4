@@ -16,10 +16,12 @@ async def post_image_in_channel(image_path, chat_id_tg, token_bot_tg):
         image_path = images_names[0]
     bot = telegram.Bot(token=token_bot_tg,)
     async with bot:
-        await bot.send_photo(
-                chat_id=chat_id_tg,
-                photo=open(f'{DIR_PATH}{image_path}', 'rb')
-            )
+        with open(f'{DIR_PATH}{image_path}', 'rb') as image:
+            await bot.send_photo(
+                    chat_id=chat_id_tg,
+                    photo=image
+                )
+
 
 if __name__ == '__main__':
     load_dotenv()

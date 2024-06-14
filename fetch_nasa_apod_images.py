@@ -15,9 +15,9 @@ def fetch_nasa_apod(count, api_key_nasa):
         'count': count,
     })
     response.raise_for_status()
-    urls = []
-    for info_of_image in response.json():
-        urls.append(info_of_image['url'])
+    urls = [
+        records_of_image['url'] for records_of_image in response.json()
+    ]
     return urls
 
 

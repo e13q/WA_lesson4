@@ -16,10 +16,7 @@ def get_file_name(url):
 
 def save_image_in_dir(url, path, auth_params=None):
     Path(path).mkdir(parents=True, exist_ok=True)
-    if auth_params:
-        response = requests.get(url, params=auth_params)
-    else:
-        response = requests.get(url)
+    response = requests.get(url, params=auth_params)
     response.raise_for_status()
     with open(f'{path}{get_file_name(url)}', 'wb') as file:
         file.write(response.content)
